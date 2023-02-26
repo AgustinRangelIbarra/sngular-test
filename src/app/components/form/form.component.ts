@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SeriesService } from 'src/app/services/series.service';
 
 @Component({
   selector: 'app-form',
@@ -6,19 +7,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
-  seriesN: number | null;
+  seriesN: number;
   title: string;
 
-  constructor() {
-    this.title = `series(n) = 4triangular(n-1) - 2primo(n-1) + fibonacci(n+2)`;
-    this.seriesN = null;
-  }
-  ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
+  constructor(private _seriesService: SeriesService) {
+    this.title = `series(n) = 4•triangular(n-1) - 2•prime(n-1) + fibonacci(n+2)`;
+    this.seriesN = 0;
   }
 
-  calculateSeries() {
-    console.log('qsdf');
+  ngOnInit(): void {}
+
+  calculateSeries(value: number) {
+    this._seriesService.getResult(value);
+  }
+
+  resetResult() {
+    this.seriesN = 0;
+    this._seriesService.resetResult();
   }
 }

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { SeriesService } from 'src/app/services/series.service';
 
 @Component({
   selector: 'app-result',
@@ -6,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./result.component.scss'],
 })
 export class ResultComponent {
-  result: number = 0;
+  result: Observable<number>;
+
+  constructor(private _seriesService: SeriesService) {
+    this.result = this._seriesService.getResult$;
+  }
 }
