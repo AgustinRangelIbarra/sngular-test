@@ -1,0 +1,35 @@
+<div
+  class="form-wrapper d-flex align-items-center justify-content-center flex-column"
+>
+  <div class="py-4">
+    <span>
+      <i>{{ title }} </i>
+    </span>
+  </div>
+  <div
+    class="form d-flex align-items-center justify-content-center flex-column"
+  >
+    <mat-form-field>
+      <mat-label>Value n</mat-label>
+      <input matInput type="number" [(ngModel)]="seriesN" />
+    </mat-form-field>
+    <div>
+      <button
+        class="mx-2"
+        mat-raised-button
+        color="primary"
+        (click)="calculateSeries()"
+      >
+        Calculate
+      </button>
+      <button
+        class="mx-2"
+        mat-raised-button
+        color="secondary"
+        (click)="seriesN = null"
+      >
+        Clear
+      </button>
+    </div>
+  </div>
+</div>
