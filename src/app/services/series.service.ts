@@ -29,48 +29,47 @@ export class SeriesService {
 
   calculateSeries(inputValue: number): number {
     let res =
-      4 * this.calculateTriangular(inputValue) -
-      2 * this.calculatePrimeNumber(inputValue) +
-      this.calculateFibonacci(inputValue);
+      4 * this.calculateTriangular(inputValue - 1) -
+      2 * this.calculatePrimeNumber(inputValue - 1) +
+      this.calculateFibonacci(inputValue + 2);
 
-    console.log({ res });
+    console.log('-----');
 
     return res;
   }
 
   calculateFibonacci(userValue: number): number {
-    let fib = userValue + 2;
-    if (fib <= 1) {
-      console.log('Fib> ', fib);
-      return fib;
+    let n1 = 0;
+    let n2 = 1;
+    let nextTerm;
+
+    for (let i = 1; i <= userValue; i++) {
+      nextTerm = n1 + n2;
+      n1 = n2;
+      n2 = nextTerm;
     }
 
-    const result = [0, 1];
-    for (let i = 2; i <= fib; i++) {
-      result[i] = result[i - 2] + result[i - 1];
-    }
-    console.log('Fib> ', parseFloat(result[result.length - 1].toFixed(2)));
-    return parseFloat(result[result.length - 1].toFixed(2));
+    console.log('calculateFibonacci: ', n1);
+    return n1;
   }
 
   calculateTriangular(userValue: number): number {
-    let input = userValue - 1;
+    let input = userValue;
     let triangular = 0;
     if (input <= 0) {
-      console.log('Tri>', 0);
       return 0;
     }
     for (let i = 1; i <= input; i++) {
       triangular += i;
     }
-    console.log('Tri>', triangular);
+
+    console.log('calculateTriangular', triangular);
     return triangular;
   }
 
   calculatePrimeNumber(userValue: number): number {
-    let input = userValue - 1;
+    let input = userValue;
     if (input <= 0) {
-      console.log('Prime > ', 0);
       return 0;
     }
 
@@ -97,8 +96,7 @@ export class SeriesService {
       primes.push(n);
       n += 2;
     }
-
-    console.log('Prime> ', primes[input - 1]);
+    console.log('calculatePrimeNumber', primes[input - 1]);
     return primes[input - 1];
   }
 }
